@@ -36,11 +36,11 @@ fi
 
 for folder in $FOLDERS; do
 
-	bashio::log.info "Sync $folder -> ${REMOTE_FOLDER}"
+	bashio::log.info "Sync ${REMOTE_FOLDER} -> $folder"
 	# shellcheck disable=SC2086
 	rsync ${OPTIONS} \
 	-e "ssh -p ${PORT} -i ${PRIVATE_KEY_FILE} -oStrictHostKeyChecking=no" \
-	"$folder" "${USERNAME}@${HOST}:${REMOTE_FOLDER}"
+	"${USERNAME}@${HOST}:${REMOTE_FOLDER}" "$folder"
 done
 
 bashio::log.info "Synced all folders"
